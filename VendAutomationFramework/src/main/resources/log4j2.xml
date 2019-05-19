@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="TRACE">
+
+    <Properties>
+        <Property name="filename">./ExecutionOutputs/Logs/TestExecution</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="Pattern Pattern %d{DEFAULT} %-5level %t : %logger{1} - %m%n"/>
+        </Console>
+        <RollingFile name="RollingFile"
+                     fileName="${filename}.log"
+                     filePattern="${filename}-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{DEFAULT} %-5level %logger{1} - %m%n"/>
+            <maxFileSize>50MB</maxFileSize>
+            <TimeBasedTriggeringPolicy/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.mydomain" level="INFO"/>
+        <Root level="DEBUG">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
